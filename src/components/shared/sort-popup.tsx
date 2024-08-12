@@ -10,7 +10,6 @@ export function SortPopup ({className}: Props){
             <ArrowUpDown size={16}/>
             <b>Сортировака:</b>
             <b className={'text-primary'}>популярное</b>
-
         </div>
     )
 }
