@@ -1,6 +1,7 @@
 import {Categories, Container, Filters, SortPopup} from "@/components/shared";
 import {Title} from "@/components/shared/title";
 import TopBar from "@/components/shared/top-bar";
+import {ProductCard} from "@/components/shared/product-card";
 
 export default function Home() {
     return <>
@@ -18,8 +19,6 @@ export default function Home() {
                 <div className="flex-1">
                     <div className="flex flex-col gap-16">
                        Список товаров
-                        {/*<ProductsGroupList title="Пиццы" items={[1, 2, 3, 4, 5]}/>*/}
-                        {/*<ProductsGroupList title="Комбо" items={[1, 2, 3, 4, 5]}/>*/}
                     </div>
                 </div>
             </div>
