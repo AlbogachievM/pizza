@@ -5,7 +5,6 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("POSTGRES_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Category {
@@ -65,8 +64,9 @@ model User {
   email    String   @unique
   password String
   role     UserRole @default(USER)
+  verified DateTime
 
-  procider   String?
+  provider   String?
   providerId String?
 
   cart             Cart?
@@ -140,9 +140,11 @@ model VerificationCode {
   user   User @relation(fields: [userId], references: [id])
   userId Int  @unique
 
-  code String
+  code String @unique
 
   expiresAt DateTime @default(now())
+
+  @@unique([userId, code])
 }
 
 enum OrderStatus {
