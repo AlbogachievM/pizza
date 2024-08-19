@@ -1,10 +1,10 @@
 "use client"
 import {cn} from "@/lib/utils";
-import React, { useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Search} from "lucide-react";
 import {useClickAway, useDebounce} from "react-use";
 import Link from "next/link";
-import {api} from "../../../services/api-client";
+import {APIClient} from "../../../services/api-client";
 import {Product} from "@prisma/client";
 
 interface Props {
@@ -19,9 +19,13 @@ export const SearchInput = ({className}: Props) => {
 
     useClickAway(ref, () => setFocused(false))
 
-    useDebounce(() => {
-        api.products.search(searchQuery)
-            .then(item => setProducts(item))
+    useDebounce(async () => {
+        try {
+            const res = await APIClient.products.search(searchQuery)
+            setProducts(res)
+        } catch (err) {
+            console.log(err)
+        }
     }, 300, [searchQuery]);
 
     const onClickItem = () => {

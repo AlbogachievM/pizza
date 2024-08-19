@@ -1,5 +1,6 @@
 import * as products from './products'
-
-export const api = {
-    products
+import * as ingredients from './ingredients'
+export const APIClient = {
+    products,
+    ingredients,
 }
